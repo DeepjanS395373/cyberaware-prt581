@@ -1,0 +1,8 @@
+# Microsoft Word temporary files
+~$*.docx
+~$*.doc
+*.tmp
+
+# Windows system files
+Thumbs.db
+desktop.ini
