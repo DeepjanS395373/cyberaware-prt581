@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberAware | Social Engineering Awareness Training</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">CA</span>
+      <div>
+        <h1>CyberAware</h1>
+        <p>Social Engineering Awareness Training Platform</p>
+      </div>
+    </div>
+    <nav>
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('login')">Login</button>
+      <button onclick="showSection('learner')">Learner</button>
+      <button onclick="showSection('simulation')">Simulation</button>
+      <button onclick="showSection('feedback')">Feedback</button>
+      <button onclick="showSection('admin')">Admin</button>
+      <button onclick="showSection('reports')">Reports</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Interactive Cybersecurity Training</p>
+          <h2>Learn to recognise phishing, scams, impersonation and unsafe requests before they become real incidents.</h2>
+          <p class="hero-text">
+            CyberAware is a prototype web platform that helps learners practise identifying social engineering attacks through training modules, safe simulations, quizzes, feedback, and progress reports.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" onclick="showSection('login')">Start Training</button>
+            <button class="secondary" onclick="showSection('simulation')">Try Simulation</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Training Focus</h3>
+          <ul>
+            <li>Phishing emails</li>
+            <li>Fake login pages</li>
+            <li>SMS scams</li>
+            <li>Suspicious links</li>
+            <li>Impersonation and pretexting</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="login" class="page">
+      <div class="card narrow">
+        <h2>Login</h2>
+        <p class="muted">Prototype login screen for learners, trainers and administrators.</p>
+
+        <label>Email</label>
+        <input type="email" value="learner@cyberaware.edu" />
+
+        <label>Password</label>
+        <input type="password" value="Password123" />
+
+        <label>Role</label>
+        <select id="roleSelect">
+          <option value="learner">Learner</option>
+          <option value="admin">Administrator</option>
+          <option value="trainer">Trainer</option>
+        </select>
+
+        <button class="primary full" onclick="loginDemo()">Login to Dashboard</button>
+        <p id="loginMessage" class="success-message"></p>
+      </div>
+    </section>
+
+    <section id="learner" class="page">
+      <div class="section-heading">
+        <h2>Learner Dashboard</h2>
+        <p>Track training progress, complete modules, and attempt simulations.</p>
+      </div>
+
+      <div class="grid three">
+        <div class="stat-card">
+          <h3>Modules Completed</h3>
+          <strong>3 / 5</strong>
+          <p>Phishing, SMS scams, fake login pages</p>
+        </div>
+        <div class="stat-card">
+          <h3>Awareness Score</h3>
+          <strong>82%</strong>
+          <p>Good awareness with improvement needed in link checking.</p>
+        </div>
+        <div class="stat-card">
+          <h3>Risk Level</h3>
+          <strong class="warning">Medium</strong>
+          <p>One risky response detected in latest simulation.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Training Modules</h3>
+        <div class="module-list">
+          <div class="module done">
+            <h4>Phishing Email Basics</h4>
+            <p>Learn sender checks, urgency signs, attachments and suspicious wording.</p>
+            <span>Completed</span>
+          </div>
+          <div class="module done">
+            <h4>Fake Login Pages</h4>
+            <p>Identify fake URLs, cloned pages and credential theft attempts.</p>
+            <span>Completed</span>
+          </div>
+          <div class="module current">
+            <h4>Suspicious Links and SMS Scams</h4>
+            <p>Practise checking shortened links, unknown numbers and urgent messages.</p>
+            <span>In Progress</span>
+          </div>
+          <div class="module">
+            <h4>Impersonation and Pretexting</h4>
+            <p>Recognise fake authority requests and social manipulation.</p>
+            <span>Not Started</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulation" class="page">
+      <div class="section-heading">
+        <h2>Phishing Simulation</h2>
+        <p>Review the message below and choose the safest action.</p>
+      </div>
+
+      <div class="simulation-layout">
+        <div class="email-box">
+          <div class="email-header">
+            <strong>From:</strong> CDU IT Support &lt;security-alert@cdu-login-check.com&gt;<br />
+            <strong>Subject:</strong> Urgent: Your student account will be suspended today
+          </div>
+          <div class="email-body">
+            <p>Dear Student,</p>
+            <p>Your university account has failed a security verification. To avoid suspension within 2 hours, click the link below and confirm your password immediately.</p>
+            <p><a href="#" onclick="return false;">https://cdu-login-check.com/verify-now</a></p>
+            <p>Regards,<br />IT Support Team</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Choose your response</h3>
+          <button class="option" onclick="selectAnswer('risky')">Click the link and enter my password quickly.</button>
+          <button class="option" onclick="selectAnswer('safe')">Do not click. Check the official CDU portal or contact IT support through official channels.</button>
+          <button class="option" onclick="selectAnswer('risky')">Forward it to friends and ask if they received it too.</button>
+          <p id="answerMessage" class="success-message"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback" class="page">
+      <div class="section-heading">
+        <h2>Immediate Feedback</h2>
+        <p>The platform explains why a learner response was safe or risky.</p>
+      </div>
+
+      <div class="grid two">
+        <div class="card success">
+          <h3>Safe Response</h3>
+          <p>
+            The safest action is to avoid clicking the link and verify the message through official university channels. The sender domain is suspicious, the message creates urgency, and it asks for password confirmation.
+          </p>
+        </div>
+        <div class="card danger">
+          <h3>Warning Signs</h3>
+          <ul>
+            <li>Urgent pressure: “within 2 hours”</li>
+            <li>Suspicious domain: cdu-login-check.com</li>
+            <li>Requests password confirmation</li>
+            <li>Threatens account suspension</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Recommended Learning</h3>
+        <p>Review the “Suspicious Links and Fake Login Pages” module again and complete one more simulation before finishing this topic.</p>
+      </div>
+    </section>
+
+    <section id="admin" class="page">
+      <div class="section-heading">
+        <h2>Administrator Dashboard</h2>
+        <p>Manage training content, simulation scenarios, users, and learner reports.</p>
+      </div>
+
+      <div class="grid three">
+        <div class="stat-card">
+          <h3>Total Learners</h3>
+          <strong>128</strong>
+          <p>Registered users in awareness training.</p>
+        </div>
+        <div class="stat-card">
+          <h3>Average Score</h3>
+          <strong>76%</strong>
+          <p>Across all completed modules.</p>
+        </div>
+        <div class="stat-card">
+          <h3>High Risk Responses</h3>
+          <strong class="danger-text">18</strong>
+          <p>Learners clicked or trusted risky scenario content.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Scenario Management</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Scenario</th>
+              <th>Type</th>
+              <th>Risk Level</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Urgent account suspension email</td>
+              <td>Phishing</td>
+              <td>High</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>Fake parcel SMS link</td>
+              <td>SMS Scam</td>
+              <td>Medium</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>Manager asks for gift cards</td>
+              <td>Impersonation</td>
+              <td>High</td>
+              <td>Draft</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="reports" class="page">
+      <div class="section-heading">
+        <h2>Reports and Analytics</h2>
+        <p>Prototype view of training performance and risk indicators.</p>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Module Completion</h3>
+          <div class="bar"><span style="width: 85%"></span></div>
+          <p>85% of learners completed phishing basics.</p>
+          <div class="bar"><span style="width: 68%"></span></div>
+          <p>68% completed fake login page training.</p>
+          <div class="bar"><span style="width: 52%"></span></div>
+          <p>52% completed impersonation training.</p>
+        </div>
+        <div class="card">
+          <h3>Most Common Mistakes</h3>
+          <ul>
+            <li>Clicked suspicious links without checking domain.</li>
+            <li>Trusted urgent account warning messages.</li>
+            <li>Failed to verify sender identity.</li>
+            <li>Ignored spelling and branding inconsistencies.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>CyberAware Prototype | PRT-581 Darwin Assignment Group 21 | GitHub Pages Demo</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
